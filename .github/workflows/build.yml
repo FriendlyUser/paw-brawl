@@ -1,6 +1,7 @@
-# Test and build the game on every push and pull request. The built site is attached to
-# each run as the "paw-brawl-dist" artifact (Actions tab → run → Artifacts).
-name: Build
+# Test and build the game on every push and pull request, then publish dist/ to
+# GitHub Pages (https://friendlyuser.github.io/paw-brawl/) on pushes to main.
+# The built site is also attached to each run as the "paw-brawl-dist" artifact.
+name: Build and deploy
 
 on:
   push:
@@ -10,6 +11,14 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push replaces a queued one but never cancels a
+# deployment that is already running.
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -36,3 +45,22 @@ jobs:
           name: paw-brawl-dist
           path: dist
           retention-days: 30
+
+      - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

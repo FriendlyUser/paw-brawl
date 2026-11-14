@@ -1,5 +1,7 @@
 # Paw Brawl
 
+**Play it:** https://friendlyuser.github.io/paw-brawl/
+
 A platform fighter in the spirit of the party brawlers: six animals knock each other
 off floating stages. Built with **Phaser 3** (rendering) and **Vue 3** (menus and HUD).
 All art, music and sound are generated in code; there are no asset files.
