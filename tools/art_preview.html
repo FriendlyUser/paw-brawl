@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Art preview</title>
+<style>body{margin:0;background:#2a3550;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;padding:8px} canvas,img{background:#4a6a8a;border-radius:8px}</style></head>
+<body><script type="module">
+import { renderFullBody, portraitURL, paintAnimal } from '../src/art/animals.js';
+import { ROSTER } from '../src/engine/characters.js';
+const q = new URLSearchParams(location.search);
+const pal = +(q.get('pal') ?? 0);
+for (const id of ROSTER) { const c = renderFullBody(id, pal, +(q.get('s') ?? 1), q.get('expr') ?? 'normal'); c.style.width = (c.width / 2) + 'px'; document.body.appendChild(c); }
+if (q.get('heads')) for (const id of ROSTER) for (const e of ['normal','angry','hurt','blink']) { const i = new Image(); i.src = portraitURL(id, pal, e); i.width = 96; document.body.appendChild(i); }
+if (q.get('parts')) for (const id of ROSTER) { const {parts} = paintAnimal(id, pal); for (const [k, p] of Object.entries(parts)) { if (k.startsWith('head_') && k !== 'head_normal') continue; p.canvas.style.width = (p.canvas.width/2)+'px'; p.canvas.title = k; document.body.appendChild(p.canvas); } }
+</script></body></html>

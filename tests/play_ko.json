@@ -1,0 +1,107 @@
+{
+ "url": "http://localhost:8791/dist/index.html?quick=1&p1=rabbit&p2=rhino&cpu1=9&cpu2=9&stage=savanna&stocks=1&ff=2",
+ "steps": [
+  {
+   "until": "window.__paw?.scene?.phase === 'fight'",
+   "timeout": 40000
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k00"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k01"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k02"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k03"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k04"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k05"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k06"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k07"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k08"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k09"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k10"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k11"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k12"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "shot": "k13"
+  },
+  {
+   "eval": "__paw.scene.battle.fighters.map(f=>[f.charId,Math.round(f.damage),f.stocks])",
+   "label": "state"
+  },
+  {
+   "until": "!!document.querySelector('.results')",
+   "timeout": 120000
+  },
+  {
+   "wait": 1500
+  },
+  {
+   "shot": "results"
+  }
+ ]
+}

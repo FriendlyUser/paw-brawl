@@ -1,0 +1,160 @@
+{
+ "url": "http://localhost:8791/dist/index.html?quick=1&p1=bear&p2=cat&cpu2=0&stage=grove",
+ "steps": [
+  {
+   "until": "window.__paw?.scene?.phase === 'fight'",
+   "timeout": 30000
+  },
+  {
+   "down": "KeyD"
+  },
+  {
+   "until": "(()=>{const [a,b]=__paw.scene.battle.fighters; return b.x-a.x < 110})()",
+   "timeout": 15000
+  },
+  {
+   "up": "KeyD"
+  },
+  {
+   "wait": 500
+  },
+  {
+   "eval": "(()=>{const [a,b]=__paw.scene.battle.fighters; return {a:[a.state,a.move?.name??'',Math.round(a.x),Math.round(a.y)], b:[b.state,Math.round(b.x),+b.damage.toFixed(1)]}})()",
+   "label": "close"
+  },
+  {
+   "tap": "KeyJ"
+  },
+  {
+   "wait": 150
+  },
+  {
+   "tap": "KeyJ"
+  },
+  {
+   "wait": 150
+  },
+  {
+   "tap": "KeyJ"
+  },
+  {
+   "wait": 900
+  },
+  {
+   "eval": "(()=>{const [a,b]=__paw.scene.battle.fighters; return {a:[a.state,a.move?.name??'',Math.round(a.x),Math.round(a.y)], b:[b.state,Math.round(b.x),+b.damage.toFixed(1)]}})()",
+   "label": "after jab x3"
+  },
+  {
+   "shot": "p1"
+  },
+  {
+   "down": "KeyA"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "up": "KeyA"
+  },
+  {
+   "wait": 200
+  },
+  {
+   "down": "KeyD"
+  },
+  {
+   "wait": 30
+  },
+  {
+   "tap": "KeyJ",
+   "ms": 500
+  },
+  {
+   "up": "KeyD"
+  },
+  {
+   "wait": 200
+  },
+  {
+   "eval": "(()=>{const [a,b]=__paw.scene.battle.fighters; return {a:[a.state,a.move?.name??'',Math.round(a.x),Math.round(a.y)], b:[b.state,Math.round(b.x),+b.damage.toFixed(1)]}})()",
+   "label": "fsmash (charging?)"
+  },
+  {
+   "shot": "p2"
+  },
+  {
+   "wait": 1200
+  },
+  {
+   "eval": "(()=>{const [a,b]=__paw.scene.battle.fighters; return {a:[a.state,a.move?.name??'',Math.round(a.x),Math.round(a.y)], b:[b.state,Math.round(b.x),+b.damage.toFixed(1)]}})()",
+   "label": "after fsmash"
+  },
+  {
+   "tap": "Space",
+   "ms": 200
+  },
+  {
+   "wait": 350
+  },
+  {
+   "eval": "(()=>{const [a,b]=__paw.scene.battle.fighters; return {a:[a.state,a.move?.name??'',Math.round(a.x),Math.round(a.y)], b:[b.state,Math.round(b.x),+b.damage.toFixed(1)]}})()",
+   "label": "jumped"
+  },
+  {
+   "tap": "Space",
+   "ms": 60
+  },
+  {
+   "wait": 200
+  },
+  {
+   "eval": "__paw.scene.battle.fighters[0].airJumps",
+   "label": "air jumps left"
+  },
+  {
+   "shot": "p3"
+  },
+  {
+   "wait": 2000
+  },
+  {
+   "down": "KeyL"
+  },
+  {
+   "wait": 500
+  },
+  {
+   "eval": "(()=>{const [a,b]=__paw.scene.battle.fighters; return {a:[a.state,a.move?.name??'',Math.round(a.x),Math.round(a.y)], b:[b.state,Math.round(b.x),+b.damage.toFixed(1)]}})()",
+   "label": "shield"
+  },
+  {
+   "shot": "p5"
+  },
+  {
+   "up": "KeyL"
+  },
+  {
+   "wait": 500
+  },
+  {
+   "down": "KeyW"
+  },
+  {
+   "tap": "KeyK",
+   "ms": 80
+  },
+  {
+   "up": "KeyW"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "eval": "(()=>{const [a,b]=__paw.scene.battle.fighters; return {a:[a.state,a.move?.name??'',Math.round(a.x),Math.round(a.y)], b:[b.state,Math.round(b.x),+b.damage.toFixed(1)]}})()",
+   "label": "up special"
+  },
+  {
+   "shot": "p4"
+  }
+ ]
+}

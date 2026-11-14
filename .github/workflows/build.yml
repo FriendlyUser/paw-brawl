@@ -1,0 +1,38 @@
+# Test and build the game on every push and pull request. The built site is attached to
+# each run as the "paw-brawl-dist" artifact (Actions tab → run → Artifacts).
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: # allow manual runs from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Engine tests (every move connects, CPU matches run clean)
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paw-brawl-dist
+          path: dist
+          retention-days: 30
